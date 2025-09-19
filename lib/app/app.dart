@@ -9,6 +9,7 @@ import 'package:taskmanager2/presentation/screens/auth_screens/sign_up_screen.da
 import 'package:taskmanager2/presentation/screens/user_screens/add_task_screen.dart';
 import 'package:taskmanager2/presentation/screens/user_screens/my_tasks_screen.dart';
 import 'package:taskmanager2/presentation/screens/user_screens/profile_screen.dart';
+import 'package:taskmanager2/presentation/screens/user_screens/splash_screen.dart';
 import 'package:taskmanager2/widget_tree.dart';
 
 class App extends StatefulWidget {
@@ -73,12 +74,12 @@ class _AppState extends State<App> {
           titleSpacing: 0,
           toolbarHeight: 70,
           color: App_colors.bgColor
-        )
+        ),
       ),
-      initialRoute: LoginScreen.name,
+      initialRoute: SplashScreen.name,
       onGenerateRoute: onGenerateRoute,
       initialBinding: ControllerBinder(),
-      home:  LoginScreen(),
+      home:  SplashScreen(),
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:taskmanager2/app/app_colors.dart';
 import 'package:taskmanager2/controllers/auth_controller/auth_controller.dart';
 import 'package:taskmanager2/models/task_model.dart';
 import 'package:taskmanager2/presentation/screens/user_screens/tasks_details.dart';
@@ -23,6 +23,7 @@ class _MyTasksScreenState extends State<MyTasksScreen> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_){
       getAllTask();
+      precacheImage(AssetImage('assets/images/containerBG.png'), context);
     });
     super.initState();
   }
@@ -31,41 +32,41 @@ class _MyTasksScreenState extends State<MyTasksScreen> {
     print(AuthController.accessToken);
     return Scaffold(
       body: SafeArea(
-        child: isLoading?Center(child: CircularProgressIndicator(),):SingleChildScrollView(
+        child: isLoading?Center(child: CircularProgressIndicator(
+          color: App_colors.brandColor,
+        ),):SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 10,),
-                Container(
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundImage: AuthController.Profile?.image != null && AuthController.Profile!.image.isNotEmpty
-                            ? NetworkImage(AuthController.Profile!.image)
-                            : AssetImage('assets/images/person.png'),
-                        radius: 30,
-                      ),
-                      const SizedBox(width: 10),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            AuthController.Profile?.firstName??"Unknown",
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          Text(
-                            "Welcome to Task Manager",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleSmall
-                                ?.copyWith(color: Colors.black),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AuthController.Profile?.image != null && AuthController.Profile!.image.isNotEmpty
+                          ? NetworkImage(AuthController.Profile!.image)
+                          : AssetImage('assets/images/person.png'),
+                      radius: 30,
+                    ),
+                    const SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          AuthController.Profile?.firstName??"Unknown",
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        Text(
+                          "Welcome to Task Manager",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall
+                              ?.copyWith(color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
 
                const SizedBox(height: 20,),
@@ -103,7 +104,7 @@ class _MyTasksScreenState extends State<MyTasksScreen> {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        SvgPicture.asset('assets/images/Frame.svg'),
+                                        Image.asset('assets/images/tasklogo.png'),
                                         const SizedBox(height: 10,),
                                         Text(singleTask.title,style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600),),
                                         const SizedBox(height: 10,),

@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:taskmanager2/controllers/auth_controller/auth_controller.dart';
 import 'package:taskmanager2/controllers/login_controller.dart';
 import 'package:taskmanager2/presentation/screens/auth_screens/sign_up_screen.dart';
 import 'package:taskmanager2/presentation/screens/user_screens/my_tasks_screen.dart';
@@ -49,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   "Stay productive and take control of your tasks.",
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 30),
                 Text("Email Address",style: Theme.of(context).textTheme.titleMedium,),
                 const SizedBox(height: 8,),
 
@@ -161,10 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 20),
                 GetBuilder<LoginController>(
                   builder: (controller) {
-                    return Visibility(
-                      visible: controller.inProgress == false,
-                        // replacement: ,
-                        child: FilledButton(onPressed: _onTapSign, child: Text("Log In")));
+                    return FilledButton(onPressed: _onTapSign, child: Text("Log In"));
                   }
                 ),
                 Spacer(),
@@ -184,6 +182,10 @@ class _LoginScreenState extends State<LoginScreen> {
     showLoading(context);
     bool isSuccess = await _controller.logIn(_emailController.text.trim(), _passwordController.text);
     if(isSuccess){
+      if(isCheck)
+        await AuthController.saveUserData(_emailController.text.trim(),_controller.token!, _controller.user!);
+
+      AuthController.saveTempUserData(_emailController.text.trim(),_controller.token!, _controller.user!);
       Navigator.pushNamedAndRemoveUntil(context, WidgetTree.name, (predicate)=>false);
 
     }else{

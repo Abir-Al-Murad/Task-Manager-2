@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:taskmanager2/presentation/screens/auth_screens/login_screen.dart';
-import 'package:taskmanager2/presentation/widgets/back_button.dart';
 import 'package:taskmanager2/presentation/widgets/my_appbar.dart';
 import 'package:taskmanager2/presentation/widgets/shadow_container.dart';
 import 'package:taskmanager2/presentation/widgets/title_medium_title.dart';

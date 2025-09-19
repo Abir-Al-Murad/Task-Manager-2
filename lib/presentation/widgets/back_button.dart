@@ -5,8 +5,9 @@ class MyBackButton extends StatelessWidget {
   const MyBackButton({
     super.key,
     this.onTap,
+    this.editButton = false,
   });
-
+  final editButton;
   final VoidCallback? onTap;
 
   @override
@@ -31,7 +32,7 @@ class MyBackButton extends StatelessWidget {
             ],
           ),
           child: Center(
-            child: Icon(Icons.arrow_back_ios, color: App_colors.brandColor, size: 25),
+            child: editButton?Icon(Icons.edit,color: App_colors.brandColor,size: 25,): Icon(Icons.arrow_back_ios, color: App_colors.brandColor, size: 25),
           ),
         ),
       ),

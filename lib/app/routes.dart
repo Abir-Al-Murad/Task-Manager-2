@@ -5,12 +5,16 @@ import 'package:taskmanager2/presentation/screens/auth_screens/login_screen.dart
 import 'package:taskmanager2/presentation/screens/auth_screens/set_new_password.dart';
 import 'package:taskmanager2/presentation/screens/auth_screens/sign_up_screen.dart';
 import 'package:taskmanager2/presentation/screens/auth_screens/verify_email.dart';
+import 'package:taskmanager2/presentation/screens/auth_screens/verify_otp.dart';
+import 'package:taskmanager2/presentation/screens/page_view_screens/page_view_screen.dart';
 import 'package:taskmanager2/presentation/screens/user_screens/account_settings.dart';
 import 'package:taskmanager2/presentation/screens/user_screens/add_task_screen.dart';
 import 'package:taskmanager2/presentation/screens/user_screens/change_password_screen.dart';
+import 'package:taskmanager2/presentation/screens/user_screens/edit_task_screen.dart';
 import 'package:taskmanager2/presentation/screens/user_screens/my_profile.dart';
 import 'package:taskmanager2/presentation/screens/user_screens/my_tasks_screen.dart';
 import 'package:taskmanager2/presentation/screens/user_screens/profile_screen.dart';
+import 'package:taskmanager2/presentation/screens/user_screens/splash_screen.dart';
 import 'package:taskmanager2/presentation/screens/user_screens/tasks_details.dart';
 import 'package:taskmanager2/widget_tree.dart';
 
@@ -41,6 +45,15 @@ MaterialPageRoute onGenerateRoute(RouteSettings settings){
   } else if(settings.name == TasksDetails.name){
     final Task args = settings.arguments as Task;
     screen = TasksDetails(task: args,);
+  } else if(settings.name == EditTaskScreen.name){
+    screen = EditTaskScreen();
+  } else if(settings.name == SplashScreen.name){
+    screen = SplashScreen();
+  } else if(settings.name == PageViewScreen.name){
+    screen = PageViewScreen();
+  } else if(settings.name == VerifyOtp.name){
+    final String arg = settings.arguments as String;
+    screen = VerifyOtp(email: arg);
   }
 
   return MaterialPageRoute(builder: (ctx)=>screen);

@@ -5,5 +5,7 @@ class Urls{
   static String allTask = "${_baseUrl}/task/get-all-task";
   static String addTask = "${_baseUrl}/task/create-task";
   static String deleteTask(String id) => "${_baseUrl}/task/delete-task/$id";
+  static String activateUser = "${_baseUrl}/user/activate-user";
+  static String myProfile = "${_baseUrl}/user/my-profile";
 
 }

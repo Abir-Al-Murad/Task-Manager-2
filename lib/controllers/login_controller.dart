@@ -9,9 +9,13 @@ import 'package:taskmanager2/services/urls.dart';
 class LoginController extends GetxController{
   bool _inProgress = false;
   String? _errorMessage;
+  String? _token;
+  UserProfile? _user;
 
   bool get inProgress => _inProgress;
   String? get errorMessage => _errorMessage;
+  String? get token => _token;
+  UserProfile? get user => _user;
 
   Future<bool> logIn(String email,String password)async{
     bool isSuccess = false;
@@ -22,13 +26,14 @@ class LoginController extends GetxController{
       'password':password,
     };
     NetworkResponse response = await  NetworkCaller.jsonPostRequest(Urls.loginUrl,requestbody );
+
     if(response.isSuccess){
       isSuccess = true;
-      final UserProfile profile = UserProfile.fromJson(response.body?['data']['user']);
+      _user = UserProfile.fromJson(response.body?['data']['user']);
+      print("Your address ${_user?.address}");
       print(response.body);
       print(response.body!['data']['token']);
-      final token = response.body!['data']['token'];
-      await AuthController.saveUserData(email, token,profile);
+      _token = response.body!['data']['token'];
 
     }else{
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager2/presentation/screens/auth_screens/verify_otp.dart';
 import 'package:taskmanager2/presentation/widgets/shadow_container.dart';
 
 class VerifyEmail extends StatefulWidget {
@@ -37,8 +38,11 @@ class _VerifyEmailState extends State<VerifyEmail> {
               ),
             ),
             const SizedBox(height: 70,),
-            FilledButton(onPressed: (){}, child: Text("Send")),
-            Spacer()
+            FilledButton(onPressed: (){
+              print('clicked');
+              Navigator.pushNamed(context, VerifyOtp.name,arguments: _controller.text.trim());
+            }, child: Text("Send")),
+            Spacer(),
           ],
         ),
       )),

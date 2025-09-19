@@ -106,4 +106,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       ],
     );
   }
+
+  Future<void> _onTapChangePassword()async{
+
+  }
 }

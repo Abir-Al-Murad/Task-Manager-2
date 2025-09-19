@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taskmanager2/app/app_colors.dart';
 import 'package:taskmanager2/controllers/auth_controller/auth_controller.dart';
+import 'package:taskmanager2/presentation/widgets/back_button.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
@@ -11,9 +12,23 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      appBar: AppBar(
+        leading: MyBackButton(),
+        title: Center(
+          child: Text("My Profile",style: TextStyle(color: App_colors.brandColor,fontWeight: FontWeight.w600,fontSize: 16),),
+        ),
+        actions: [
+          MyBackButton(
+            editButton: true,
+          )
+        ],
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

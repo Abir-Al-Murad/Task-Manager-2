@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart';
 import 'package:taskmanager2/app/app_colors.dart';
 import 'package:taskmanager2/controllers/auth_controller/auth_controller.dart';
 import 'package:taskmanager2/models/task_model.dart';
-import 'package:taskmanager2/presentation/widgets/back_button.dart';
+import 'package:taskmanager2/presentation/screens/user_screens/edit_task_screen.dart';
 import 'package:taskmanager2/presentation/widgets/my_appbar.dart';
 import 'package:taskmanager2/presentation/widgets/title_medium_title.dart';
-import 'package:taskmanager2/services/network_caller.dart';
 import 'package:taskmanager2/services/urls.dart';
 import 'package:taskmanager2/utils/show_loading.dart';
 
@@ -69,7 +67,9 @@ class _TasksDetailsState extends State<TasksDetails> {
                               _onDelete();
                       }),
                       SizedBox(width: 10,),
-                      buildContainer("Edit Task", App_colors.brandColor, Icons.task_sharp, (){}),
+                      buildContainer("Edit Task", App_colors.brandColor, Icons.task_sharp, (){
+                        _onTapEdit();
+                      }),
                     ],
                   )
                 ],
@@ -133,5 +133,9 @@ class _TasksDetailsState extends State<TasksDetails> {
     }
     hideLoading(context);
 
+  }
+
+  void _onTapEdit(){
+    Navigator.pushNamed(context, EditTaskScreen.name);
   }
 }

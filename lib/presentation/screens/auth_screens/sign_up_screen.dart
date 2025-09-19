@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:taskmanager2/controllers/sign_up_controller.dart';
 import 'package:taskmanager2/presentation/screens/auth_screens/login_screen.dart';
+import 'package:taskmanager2/presentation/screens/auth_screens/verify_email.dart';
 import 'package:taskmanager2/presentation/widgets/shadow_container.dart';
 import 'package:taskmanager2/presentation/widgets/title_medium_title.dart';
 
@@ -271,7 +272,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       print(result);
       if(result){
         _clearTextFields();
-        Navigator.pushNamed(context, LoginScreen.name);
+        Navigator.pushNamed(context, VerifyEmail.name);
       }
     }else{
       print("Not Validate");

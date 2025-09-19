@@ -36,4 +36,25 @@ class AuthController {
       Profile = null;
     }
   }
+  static Future<void> clearUserData() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.remove('email');
+    await sharedPreferences.remove('accessToken');
+    await sharedPreferences.remove('userProfile');
+
+    email = null;
+    accessToken = null;
+    Profile = null;
+
+    print("User data cleared!");
+  }
+  static void saveTempUserData(String mail, String token, UserProfile profile) {
+    email = mail;
+    accessToken = token;
+    Profile = profile;
+
+    print("Temporary user data saved in memory!");
+    print("Email: $email, Token: $accessToken");
+  }
+
 }
